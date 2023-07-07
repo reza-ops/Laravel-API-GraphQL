@@ -1,4 +1,5 @@
 <?php
+
 namespace App\GraphQL\Queries;
 
 use App\Models\Phone;
@@ -9,24 +10,27 @@ use Rebing\GraphQL\Support\Query;
 class PhoneQuery extends Query
 {
     protected $attributes = [
-        "name" => "phone",
+        'name' => 'phone',
     ];
+
     public function type(): Type
     {
-        return GraphQL::type("Phone");
+        return GraphQL::type('Phone');
     }
+
     public function args(): array
     {
         return [
-            "id" => [
-                "name" => "id",
-                "type" => Type::int(),
-                "rules" => ["required"],
+            'id' => [
+                'name' => 'id',
+                'type' => Type::int(),
+                'rules' => ['required'],
             ],
         ];
     }
+
     public function resolve($root, $args)
     {
-        return Phone::findOrFail($args["id"]);
+        return Phone::findOrFail($args['id']);
     }
 }

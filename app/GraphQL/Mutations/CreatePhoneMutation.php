@@ -1,35 +1,38 @@
 <?php
+
 namespace App\graphql\Mutations;
 
 use App\Models\Phone;
-use Rebing\GraphQL\Support\Mutation;
 use GraphQL\Type\Definition\Type;
-use Illuminate\Support\Facades\Validator;
 use Rebing\GraphQL\Support\Facades\GraphQL;
+use Rebing\GraphQL\Support\Mutation;
+
 class CreatePhoneMutation extends Mutation
 {
     protected $attributes = [
-        "name" => "createPhone",
+        'name' => 'createPhone',
     ];
+
     public function type(): Type
     {
-        return GraphQL::type("Phone");
+        return GraphQL::type('Phone');
     }
+
     public function args(): array
     {
         return [
-            "name" => [
-                "name" => "name",
-                "type" => Type::nonNull(Type::string()),
+            'name' => [
+                'name' => 'name',
+                'type' => Type::nonNull(Type::string()),
             ],
-            "description" => [
-                "name" => "description",
-                "type" => Type::nonNull(Type::string()),
+            'description' => [
+                'name' => 'description',
+                'type' => Type::nonNull(Type::string()),
             ],
-            "price" => [
-                "name" => "price",
-                "type" => Type::nonNull(Type::int()),
-            ]
+            'price' => [
+                'name' => 'price',
+                'type' => Type::nonNull(Type::int()),
+            ],
         ];
     }
 
@@ -38,6 +41,7 @@ class CreatePhoneMutation extends Mutation
         $phone = new Phone();
         $phone->fill($args);
         $phone->save();
+
         return $phone;
     }
 }
