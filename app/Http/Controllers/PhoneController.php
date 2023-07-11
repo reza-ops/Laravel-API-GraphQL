@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PhoneRequest;
 use App\Http\Resources\PhoneResource;
 use App\Models\Phone;
-use Illuminate\Http\Request;
 
 class PhoneController extends Controller
 {
@@ -20,6 +19,20 @@ class PhoneController extends Controller
     {
         $query = Phone::get();
 
-        return new PhoneResource($query);
+        return PhoneResource::collection($query);
+    }
+
+    public function update(Phone $phone, PhoneRequest $request)
+    {
+        $phone->update($request->validated());
+
+        return new PhoneResource($phone);
+    }
+
+    public function destroy(Phone $phone)
+    {
+        $phone->delete();
+
+        return new PhoneResource($phone);
     }
 }

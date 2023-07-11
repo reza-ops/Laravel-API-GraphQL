@@ -10,12 +10,10 @@ class PhoneResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'data' => [
-                'name' => $this->name,
-                'description' => $this->description,
-                'price' => $this->price,
-            ],
-            'message' => 'Success Added Data'
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'price' => $this->price,
         ];
     }
 }
