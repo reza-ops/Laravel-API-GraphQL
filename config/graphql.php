@@ -7,7 +7,10 @@ use App\graphql\Mutations\DeletePhoneMutation;
 use App\graphql\Mutations\UpdatePhoneMutation;
 use App\GraphQL\Queries\PhoneQuery;
 use App\graphql\Queries\PhonesQuery;
+use App\GraphQL\Queries\UserQuery;
+use App\graphql\Queries\UsersQuery;
 use App\GraphQL\Types\PhoneType;
+use App\GraphQL\Types\UserType;
 
 return [
     'route' => [
@@ -84,6 +87,8 @@ return [
             'query' => [
                 'phone' => PhoneQuery::class,
                 'phones' => PhonesQuery::class,
+                'users' => UsersQuery::class,
+                'user' => UserQuery::class,
             ],
             'mutation' => [
                 'createPhone' => CreatePhoneMutation::class,
@@ -93,6 +98,7 @@ return [
             // The types only available in this schema
             'types' => [
                 'Phone' => PhoneType::class,
+                'User' => UserType::class,
             ],
 
             // Laravel HTTP middleware
